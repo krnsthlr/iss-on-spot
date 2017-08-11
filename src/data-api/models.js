@@ -11,6 +11,35 @@ const TweetItemSchema  = new Schema({
 	location: String
 });
 
+
+TweetItemSchema.statics.getNumber = function(period){
+
+	if(period === 'day') {
+		return this.count({
+			date: {
+				$gte: (new Date(new Date()).getTime()-(24*60*60*1000))
+			}
+		}).exec();
+	};
+
+	if(period === 'week') {
+		return this.count({
+			date: {
+				$gte: (new Date(new Date()).getTime()-(7*24*60*60*1000))
+			}
+		}).exec();
+	};
+
+	if(period === 'month'){
+		return this.count({
+			date: {
+				$gte: (new Date(new Date()).getTime()-(30*60*60*1000))
+			}
+		}).exec();
+	};
+
+};
+
 const TweetItem = mongoose.model('TweetItem', TweetItemSchema);
 
 module.exports.TweetItem = TweetItem;

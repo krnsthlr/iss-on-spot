@@ -1,17 +1,19 @@
 'use strict';
 
 const express = require('express');
-const stat = require('./stat.js');
+const morgan = require('morgan');
+const stat = require('../data-api/index.js');
 const app = express();
 
 // set port
 app.set('port', process.env.PORT || 5000);
 
+app.use(morgan('dev'));
+
 app.use('/', (req, res, next) => {
 
-	Promise.all([stat.getNumber('day'), stat.getNumber('week'), stat.getNumber('month')])
-		.then((count) => res.send(count))
-		.catch((err) => {return next(err)});
+	stat.read()
+		.then((count) => res.send(count));
 
 });
 
