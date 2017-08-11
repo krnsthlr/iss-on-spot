@@ -4,6 +4,7 @@
   "description": "An Express app, featuring a Twitter bot that sends ISS pass times for a specified location (Capstone Project for Treehouse Full Stack JavaScript)",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js", 
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "krnsthlr",
