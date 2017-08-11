@@ -1,0 +1,20 @@
+{
+  "name": "iss-on-spot",
+  "version": "1.0.0",
+  "description": "An Express app, featuring a Twitter bot that sends ISS pass times for a specified location (Capstone Project for Treehouse Full Stack JavaScript)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "krnsthlr",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4",
+    "moment": "^2.18.1",
+    "mongoose": "^4.11.6",
+    "morgan": "^1.8.2",
+    "twit": "^2.2.9"
+  }
+}
