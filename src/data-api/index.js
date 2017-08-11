@@ -29,4 +29,13 @@ const readStat = () => {
 		TweetItem.getNumber('month')]);
 }
 
+const writeStat = (location) => {
+
+	const tweet = new TweetItem({location: location});
+	tweet.save((err) => {
+		if(err) console.error(err);
+	});
+}
+
 module.exports.read = readStat;
+module.exports.write = writeStat;

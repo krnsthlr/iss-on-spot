@@ -1,8 +1,8 @@
 'use strict';
 
 const Twit = require('twit');
-const http = require('http');
 const find = require('./find.js');
+const stat = require('../data-api/index.js');
 
 //load environment variables
 require('dotenv').config();
@@ -44,7 +44,7 @@ function reply(tweet) {
 		});
 
 		//store time and location of tweet in db
-		logUserTweet(location);
+		stat.write(location);
 };
 
 // POST reply to the user
@@ -60,35 +60,3 @@ function tweetBack(statusText, replyID){
 		else console.log('success!');
 	});
 };
-
-// log incoming user tweet
-function logUserTweet(location) {
-
-	const data = JSON.stringify({
-		location: location
-	});
-
-	const options = {
-		host: 'localhost',
-		port: 3000,
-		path: '/api/tweets',
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'Content-Length': data.length
-		}
-	}
-
-	const req = http.request(options, (res) => {
-		res.setEncoding('utf8');
-		console.log(res.statusCode);
-	});
-
-	req.on('error', (err) => {
-		console.error('Error: ', err.message);
-	});
-
-	req.write(data);
-	req.end();
-};
-
