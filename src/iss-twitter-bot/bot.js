@@ -60,7 +60,7 @@ function reply(tweet) {
 		find.flyOver(location)
 			.then((result) => {
 				tweetBack('Hi, @' + name + ', the ISS will be over ' + location
-				+ ' on ' + result.time + ' for ' + result.duration + ' sec.', tweet.id);
+				+ ' on ' + result.time + ' (local time) for ' + result.duration + ' sec.', tweet.id);
 			})
 			.catch((err) => {
 				console.error(err);

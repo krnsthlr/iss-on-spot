@@ -106,9 +106,13 @@ function getLocalTime(data){
 				res.on('end', () => {
 					try {
 						const result = JSON.parse(rawData);
-						if(result.dstOffset != 0) timestamp += result.dstOffset;
-						else if(result.dstOffset === 0) timestamp += result.rawOffset;
-						let time = moment.utc(timestamp * 1000).format("dddd, MMMM Do YYYY, h:mm:ss a");
+						const offset = result.dstOffset + result.rawOffset;
+						// convert unix timestamp to utc date
+						// add timezone offset from Google Timezone API
+						let time = moment
+									.utc(timestamp * 1000)
+									.add(offset, 's')
+									.format("dddd, MMMM Do YYYY, h:mm:ss a");
 						resolve({
 							'time': time,
 							'duration': duration
