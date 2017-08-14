@@ -14,7 +14,7 @@ const moment = require('moment');
 * ------------------------------------------------------------------------
 */
 
-const getCoordinates = (location) => {
+function getCoordinates(location){
 
 	return new Promise((resolve, reject) => {
 
@@ -50,7 +50,7 @@ const getCoordinates = (location) => {
 * ------------------------------------------------------------------------
 */
 
-const getPassTimes = (coordinates) => {
+function getPassTimes(coordinates){
 
 	return new Promise((resolve, reject) => {
 
@@ -85,7 +85,7 @@ const getPassTimes = (coordinates) => {
 * ------------------------------------------------------------------------
 */
 
-const getLocalTime = (data) => {
+function getLocalTime(data){
 
 	let timestamp = data.response[0].risetime;
 	let duration = data.response[0].duration;
@@ -124,6 +124,10 @@ const getLocalTime = (data) => {
 	});
 };
 
-module.exports.coordinates = getCoordinates;
-module.exports.passTimes = getPassTimes;
-module.exports.localTime = getLocalTime;
+const getFlyOver = (location) => {
+	return getCoordinates(location)
+		.then((coordinates) => {return getPassTimes(coordinates)})
+		.then((data) => {return getLocalTime(data)})
+}
+
+module.exports.flyOver = getFlyOver;
