@@ -1,11 +1,14 @@
 'use strict';
 
-const googleGeocode = 'AIzaSyA4TFNyuNBcQeMQs6kt0JVAxCZv-Y-fGLc';
-const googleTimezone = 'AIzaSyAZHmK0N77EK4PjDLmPU1Ir3AHZGp8IR2k';
-
 const http = require('http');
 const https = require('https');
 const moment = require('moment');
+
+//load environment variables
+require('dotenv').config();
+
+const googleGeocode = process.env.GOOGLE_GEOCODE;
+const googleTimezone = process.env.GOOGLE_TIMEZONE;
 
 /**
 * ------------------------------------------------------------------------

@@ -8,7 +8,7 @@ const stat = require('../tweet-data/index.js');
 require('dotenv').config();
 
 // Set up a public stream on the Twitter Streaming API,
-// track any mentions of '@ISSOnSpot'
+// track any mentions of Bot Twitter Handle
 const Twitter = new Twit({
 	consumer_key: process.env.CONSUMER_KEY,
 	consumer_secret: process.env.CONSUMER_SECRET,
@@ -16,7 +16,8 @@ const Twitter = new Twit({
 	access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
-const stream = Twitter.stream('statuses/filter', {track: ['@ISSOnSpot']});
+const stream = Twitter.stream('statuses/filter', {track: ['@' + 
+	process.env.TWITTER_HANDLE]});
 
 // When a new status (tweet) comes into the stream,
 // trigger the callback
