@@ -9,7 +9,8 @@ const TweetItem = require('./models.js').TweetItem;
 mongoose.Promise = global.Promise;
 
 //set up database connection
-const db = mongoose.connect('mongodb://localhost:27017/user-tweets', {
+const db = mongoose.connect(process.env.MONGODB_URI || 
+	'mongodb://localhost:27017/user-tweets', {
 	useMongoClient: true
 });
 
