@@ -2,7 +2,7 @@
 
 const Twit = require('twit');
 const find = require('./find.js');
-const stat = require('../data-api/index.js');
+const stat = require('../tweet-data/index.js');
 
 //load environment variables
 require('dotenv').config();

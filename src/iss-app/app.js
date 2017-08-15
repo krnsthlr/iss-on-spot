@@ -2,7 +2,7 @@
 
 const express = require('express');
 const morgan = require('morgan');
-const stat = require('../data-api/index.js');
+const stat = require('../tweet-data/index.js');
 const app = express();
 
 // set port
