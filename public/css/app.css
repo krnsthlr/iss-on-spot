@@ -1,0 +1,62 @@
+.hero-section {
+  background: url("../images/s135e011864.jpg") 50% no-repeat;
+  background-size: cover;
+  height: 40vh;
+  text-align: center;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.hero-section .hero-section-text {
+  color: #fefefe;
+  text-shadow: 1px 1px 2px #0a0a0a;
+}
+
+.main {
+	margin: 1.875rem 0;
+}
+
+.main h2 {
+  text-align: center;
+}
+
+.dotted {
+	border-style: dashed;
+	margin: 1rem 0;
+	max-width: 100%
+}
+
+.centered {
+  text-align: center;
+}
+
+.row {
+	padding: 40px 8.48056537%;
+}
+
+.row-background {
+	background-color: #e4e6ea;
+}
+
+.row-4 {
+  text-align: center;
+}
+
+.footer-nav {
+	color: #fefefe;
+	padding: 20px;
+	background-color: #0a0a0a;
+	text-align: center;
+}
+
+.title-bar a,
+.footer-nav a {
+	color: #fefefe;
+}

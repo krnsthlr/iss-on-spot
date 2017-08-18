@@ -7,13 +7,16 @@ const app = express();
 
 // set port
 app.set('port', process.env.PORT || 5000);
+// start serving static files
+app.use(express.static('public'));
+app.set('views', 'views');
+app.set('view engine', 'pug');
 
 app.use(morgan('dev'));
 
-app.use('/', (req, res, next) => {
+app.get('/', (req, res, next) => {
 
-	stat.read()
-		.then((count) => res.send(count));
+	res.render('index', {title: 'Hey, ', message: 'Hello there!'});
 
 });
 
