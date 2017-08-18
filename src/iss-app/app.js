@@ -16,7 +16,14 @@ app.use(morgan('dev'));
 
 app.get('/', (req, res, next) => {
 
-	res.render('index', {title: 'Hey, ', message: 'Hello there!'});
+	stat.read()
+		.then((count) => {
+			res.render('index', {
+				hrs: count[0],
+				week: count[1],
+				month: count[2]
+			});
+		});
 
 });
 
