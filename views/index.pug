@@ -1,5 +1,95 @@
-html
-  head
-    title= title
-  body
-    h1= message
+doctype html
+html.no-js(lang='en', dir='ltr')
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='x-ua-compatible', content='ie=edge')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		title ISS Twitter Bot
+		link(rel='stylesheet', href='css/foundation.min.css')
+		link(rel='stylesheet', href='css/foundation-icons/foundation-icons.css')
+		link(rel='stylesheet', href='css/app.css')
+	body
+		// NAVIGATION
+		nav.title-bar
+			.title-bar-left
+				a(href='index.html') ISSOnSpot
+			.title-bar-right.show-for-medium
+				small Treehouse Techdegree
+		header.hero-section
+			.hero-section-text
+				h1 Track the Station
+				h5
+					| Ask @ISSOnSpot and find out 
+					br
+					|  the next ISS pass time for your location
+		// MAIN CONTENT
+		section.main
+			.grid-x.grid-margin-x.grid-padding-x.row
+				.small-12.medium-6.cell
+					hr.dotted
+					p
+						| This website was built for the Full Stack JavaScript Program on Treehouse. It features "ISSOnSpot", a Twitter account that sends information about the next time the International Space Station (ISS) passes a specific location. Here is how it works:
+					ol
+						li Log in to Twitter and send a tweet to @ISSOnSpot.
+						li
+							| Be sure to add a location to your tweet. If you need help with that see the 
+							a(href='https://support.twitter.com/articles/122236') Twitter Help Center 
+							| .
+						li
+							| ISSOnSpot looks up the geographic coordinates of your location on Google Maps. If coordinates are found,  it goes to 
+							a(href='http://open-notify.org/Open-Notify-API/ISS-Pass-Times/') Open Notify
+							|  and gets the next ISS pass time for that location.
+						li
+							| Your local time is computed using the Google Timezone API. ISSOnSpot then notifies you about the next ISS fly-over time.
+					.centered
+						a.twitter-mention-button(href='https://twitter.com/intent/tweet?screen_name=ISSOnSpot', data-size='large', data-text='Hi, when will the ISS be passing by?', data-lang='en', data-show-count='false') Tweet to @ISSOnSpot
+				.small-12.medium-6.cell
+					a.twitter-timeline(href='https://twitter.com/ISSOnSpot', data-tweet-limit='3') Tweets by TwitterDev
+			.grid-x.grid-margin-x.grid-padding-x.row.row-background
+				.small-12.medium-6.cell
+					h2 Not on Twitter?
+					hr.dotted
+					p
+						| You don't have a Twitter account? Enter your location into the search field and find out, when the Space Station will be overhead.
+				.small-12.medium-6.cell
+					.input-group
+						input.input-group-field(type='search', placeholder='Your location')
+						.input-group-button
+							input.button(type='submit', value='Search')
+					.callout.primary
+						h5 Hi, there!
+						p
+							| The ISS will be over Vienna, Austria on Tuesday 15th 2017, 2:34:16 pm (local time) for 641 sec.
+			.grid-x.grid-margin-x.grid-padding-x.row
+				.cell
+					h2 Location requests
+					hr.dotted
+			.grid-x.grid-margin-x.grid-padding-x.centered.row
+				.small-4.cell
+					.stat 36
+					small In the last 24 hrs
+				.small-4.cell
+					.stat 125
+					small In the last week
+				.small-4.cell
+					.stat 1024
+					small In the last month
+		// FOOTER
+		footer.footer-nav
+			.grid-x.grid-margin-x.grid-padding-x
+				.small-12.medium-4.cell
+					hr
+					span by krnsthlr
+				.small-12.medium-4.cell
+					hr
+					a(href='https://teamtreehouse.com/techdegree/full-stack-javascript')
+						| Capstone Project for the Full Stack JavaScript Techdegree Programm on Treehouse
+				.small-12.medium-4.cell
+					hr
+					i.fi-social-github
+					a(href='https://github.com/krnsthlr')  GitHub
+		script(src='js/vendor/jquery.js')
+		script(src='js/vendor/what-input.js')
+		script(src='js/vendor/foundation.js')
+		script(async='', src='http://platform.twitter.com/widgets.js', charset='utf-8')
+		script(src='js/app.js')
