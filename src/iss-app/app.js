@@ -9,22 +9,13 @@ const app = express();
 app.set('port', process.env.PORT || 5000);
 // start serving static files
 app.use(express.static('public'));
-app.set('views', 'views');
-app.set('view engine', 'pug');
 
 app.use(morgan('dev'));
 
 app.get('/', (req, res, next) => {
 
 	stat.read()
-		.then((count) => {
-			res.render('index', {
-				hrs: count[0],
-				week: count[1],
-				month: count[2]
-			});
-		});
-
+		.then((count) => {res.send(count)});
 });
 
 // catch 404 and forward to global error handler
