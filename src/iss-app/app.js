@@ -12,12 +12,6 @@ app.use(express.static('public'));
 
 app.use(morgan('dev'));
 
-app.get('/', (req, res, next) => {
-
-	stat.read()
-		.then((count) => {res.send(count)});
-});
-
 // catch 404 and forward to global error handler
 app.use((req, res, next) => {
 	var err = new Error('File not found');

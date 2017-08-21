@@ -1,0 +1,131 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>ISS Twitter Bot</title>
+      <link rel="stylesheet" href="css/foundation.min.css">
+      <link rel="stylesheet" href="css/foundation-icons/foundation-icons.css" />
+      <link rel="stylesheet" href="css/app.css">
+    </head>
+
+    <body>
+      <!-- NAVIGATION -->
+        <nav class="title-bar">
+          <div class="title-bar-left">
+            <a href="index.html">ISSOnSpot</a>
+          </div>
+            <div class="title-bar-right show-for-medium">
+              <small>Treehouse Techdegree</small>
+            </div>
+        </nav>
+
+      <header class="hero-section">
+        <div class="hero-section-text">
+          <h1>Track the Station</h1>
+          <h5>Ask @ISSOnSpot and find out <br> the next ISS pass time for your location</h5>
+        </div>
+      </header>
+
+      <!-- MAIN CONTENT -->
+      <section class="main">
+
+        <div class="grid-x grid-margin-x grid-padding-x row">
+          <div class="small-12 medium-6 cell">
+
+            <hr class="dotted">
+
+            <p>This website was built for the Full Stack JavaScript Program on Treehouse. It features "ISSOnSpot", a Twitter account that sends information about the next time the International Space Station (ISS) passes a specific location. Here is how it works:</p>
+
+            <ol>
+              <li>Log in to Twitter and send a tweet to @ISSOnSpot.</li>
+              <li>Be sure to add a location to your tweet. If you need help with that see the <a href="https://support.twitter.com/articles/122236">Twitter Help Center </a>.</li>
+              <li>ISSOnSpot looks up the geographic coordinates of your location on Google Maps. If coordinates are found,  it goes to <a href="http://open-notify.org/Open-Notify-API/ISS-Pass-Times/">Open Notify</a> and gets the next ISS pass time for that location.</li>
+              <li>Your local time is computed using the Google Timezone API. ISSOnSpot then notifies you about the next ISS fly-over time.</li>
+            </ol>
+
+          <div class="centered">
+            <a href="https://twitter.com/intent/tweet?screen_name=ISSOnSpot" class="twitter-mention-button" data-size="large" data-text="Hi, when will the ISS be passing by?" data-lang="en" data-show-count="false">Tweet to @ISSOnSpot</a>
+          </div>
+        </div>
+
+        <div class="small-12 medium-6 cell">
+          <a class="twitter-timeline" href="https://twitter.com/ISSOnSpot" data-tweet-limit="3">Tweets by TwitterDev</a>
+        </div>  
+      </div>
+
+      <div class="grid-x grid-margin-x grid-padding-x row row-background">   
+        <div class="small-12 medium-6 cell">
+          <h2>Not on Twitter?</h2>
+          <hr class="dotted">
+          <p>You don't have a Twitter account? Enter your location into the search field and find out, when the Space Station will be overhead.</p>
+        </div>
+
+        <div class="small-12 medium-6 cell">
+          <div class="input-group">
+            <input class="input-group-field" type="search" placeholder="Your location">
+            <div class="input-group-button">
+              <input type="submit" class="button" value="Search">
+            </div>
+          </div>
+          <div class="callout primary">
+            <h5>Hi, there!</h5>
+            <p>The ISS will be over Vienna, Austria on Tuesday 15th 2017, 2:34:16 pm (local time) for 641 sec.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-x grid-margin-x grid-padding-x row">
+        <div class="cell">
+          <h2>Location requests</h2>
+          <hr class="dotted">
+        </div>
+      </div>
+
+      <div class="grid-x grid-margin-x grid-padding-x centered row">
+        <div class="small-4 cell">
+          <div class="stat">36</div>
+          <small>In the last 24 hrs</small>
+        </div>
+        <div class="small-4 cell">
+          <div class="stat">125</div>
+          <small>In the last week</small>
+        </div>
+        <div class="small-4 cell">
+          <div class="stat">1024</div>
+          <small>In the last month</small>
+        </div>
+      </div>
+
+    </section>
+      
+
+      <!-- FOOTER -->
+      <footer class="footer-nav">
+        <div class="grid-x grid-margin-x grid-padding-x">
+        <div class="small-12 medium-4 cell">
+          <hr>
+          <span>by krnsthlr</span>
+        </div>
+        <div class="small-12 medium-4 cell">
+          <hr>
+          <a href="https://teamtreehouse.com/techdegree/full-stack-javascript">
+            Capstone Project for the Full Stack JavaScript Techdegree Programm on Treehouse
+          </a>
+        </div>
+        <div class="small-12 medium-4 cell">
+            <hr>
+            <i class="fi-social-github"></i>
+            <a href="https://github.com/krnsthlr"> GitHub</a>
+        </div>
+      </div>
+      </footer>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
