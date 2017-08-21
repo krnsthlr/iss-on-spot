@@ -60,3 +60,7 @@
 .footer-nav a {
 	color: #fefefe;
 }
+
+#message {
+  display: none;
+}
