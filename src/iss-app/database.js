@@ -21,22 +21,3 @@ db
 	.catch((err) => {
 		console.error('Connection error: ', err);
 	});
-
-const readStat = () => {
-
-	return Promise.all(
-		[TweetItem.getNumber('day'), 
-		TweetItem.getNumber('week'), 
-		TweetItem.getNumber('month')]);
-}
-
-const writeStat = (location) => {
-
-	const tweet = new TweetItem({location: location});
-	tweet.save((err) => {
-		if(err) console.error(err);
-	});
-}
-
-module.exports.read = readStat;
-module.exports.write = writeStat;

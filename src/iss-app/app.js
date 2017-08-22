@@ -1,30 +1,73 @@
 'use strict';
 
 const express = require('express');
-const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const TweetItem = require('./models.js').TweetItem;
 const find = require('../iss-twitter-bot/find.js');
+
 const app = express();
 
 // set port
 app.set('port', process.env.PORT || 5000);
 // start serving static files
 app.use(express.static('public'));
+// set up view engine
+app.set('view engine', 'pug');
+app.set('views', './public/views')
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(morgan('dev'));
 
-app.post('/', (req, res) => {
+// On initial page request, get location
+// request stats and render index view
+app.get('/', (req, res, next) => {
 
-	find.flyOver(req.body.location)
-		.then((result) => {
-			res.json({
-				message: 'The ISS will be over ' + req.body.location 
-				+ ' on ' + result.time + ' (local time) ' 
-				+ 'for ' + result.duration + ' sec.'
-			});
+	Promise.all([
+			TweetItem.getNumber('day'), 
+			TweetItem.getNumber('week'), 
+			TweetItem.getNumber('month')
+		])
+		.then((data) => {
+			res.render('index', {hrs: data[0], week: data[1], month: data[2]});
 		})
 		.catch((err) => {
+			res.render('index', {hrs: NaN, week: NaN, month: NaN})
+		});
+});
+
+app.post('/', (req, res, next) => {
+
+	let item = new TweetItem({location: req.body.location});
+	item.save((err) => {
+		if(err) console.error(err);
+	});
+
+	next();
+});
+
+app.post('/', (req, res) => {
+
+	Promise.all([
+			find.flyOver(req.body.location),
+			TweetItem.getNumber('day'),
+			TweetItem.getNumber('week'),
+			TweetItem.getNumber('month')
+		]).then((result) => {
 			res.json({
+				requests24hrs: result[1],
+				requestsWeek: result[2],
+				requestsMonth: result[3],
+				message: 'The ISS will be over ' + req.body.location 
+				+ ' on ' + result[0].time + ' (local time) ' 
+				+ 'for ' + result[0].duration + ' sec.'
+			})
+		}).catch((err) => {
+			console.error(err);
+			res.json({
+				requests24hrs: NaN,
+				requestsWeek: NaN,
+				requestsMonth: NaN,
 				message: 'Sorry, something went wrong. Please try again.'
 			})
 		});

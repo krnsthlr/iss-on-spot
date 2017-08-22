@@ -2,7 +2,7 @@
 
 const Twit = require('twit');
 const find = require('./find.js');
-const stat = require('../tweet-data/index.js');
+const TweetItem = require('../iss-app/models.js').TweetItem;
 
 //load environment variables
 require('dotenv').config();
@@ -71,7 +71,10 @@ function reply(tweet) {
 		});
 	}	
 	//store time and location of tweet in db
-	stat.write(location);
+	let item = new TweetItem({location: location});
+	item.save((err) => {
+		if(err) console.error(err);
+	});
 };
 
 // POST reply to the user

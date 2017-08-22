@@ -1,3 +1,19 @@
+var data = {
+	result: [
+
+		{count: 33},
+		{count: 144},
+		{count: 512}
+
+	]
+}
+
+const render = (data) => {
+	$('#hrs').html(data.result[0].count);
+	$('#week').html(data.result[1].count);
+	$('#month').html(data.result[2].count);
+}
+
 // Ajax success handler
 const showMessage = (data) => {
 	$('#message p').html(data.message);
