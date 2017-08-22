@@ -36,6 +36,7 @@ app.get('/', (req, res, next) => {
 		});
 });
 
+// write new request item to db
 app.post('/', (req, res, next) => {
 
 	let item = new TweetItem({location: req.body.location});
@@ -46,6 +47,7 @@ app.post('/', (req, res, next) => {
 	next();
 });
 
+// aggregate response and send back json data
 app.post('/', (req, res) => {
 
 	Promise.all([

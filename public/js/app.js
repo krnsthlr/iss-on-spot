@@ -1,24 +1,16 @@
-var data = {
-	result: [
-
-		{count: 33},
-		{count: 144},
-		{count: 512}
-
-	]
+const showMessage = (message) => {
+	$('#message p').text(message);
+	$('#message').show('slow');
 }
 
-const render = (data) => {
-	$('#hrs').html(data.result[0].count);
-	$('#week').html(data.result[1].count);
-	$('#month').html(data.result[2].count);
-}
 
 // Ajax success handler
-const showMessage = (data) => {
-	$('#message p').html(data.message);
-	$('#message').show('slow');
-	$('#locationSearch .button').removeClass('disabled');
+const render = (data) => {
+	$('#hrs').text(data.requests24hrs);
+	$('#week').text(data.requestsWeek);
+	$('#month').text(data.requestsMonth);
+	showMessage(data.message);
+	$('.button').removeClass('disabled');
 }
 
 // On search form submit event, POST location and
@@ -29,20 +21,20 @@ const requestPassTime = (location) => {
 		type: 'POST',
 		url: '/',
 		data: location,
-		success: showMessage,
+		success: render,
 		dataType: 'json'
 	});
 };
 
 // Search form event handler
-$('#locationSearch').submit((event) => {
+$('form').submit((event) => {
 	event.preventDefault();
 
 	if($('#message').length){
 		$('#message').hide();
 	};
 
-	$('#locationSearch .button').addClass('disabled');
+	$('.button').addClass('disabled');
 
 	let searchString = $('#searchInput').val();
 	requestPassTime({location: searchString});
