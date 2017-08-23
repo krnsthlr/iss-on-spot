@@ -1,3 +1,7 @@
+const searchInput = $('input')[0];
+const autocomplete = new google.maps.places.Autocomplete(
+	(searchInput), {types:['(regions)']});
+
 const showMessage = (message) => {
 	$('#message p').text(message);
 	$('#message').show('slow');
@@ -38,6 +42,6 @@ $('form').submit((event) => {
 
 	let searchString = $('#searchInput').val();
 	requestPassTime({location: searchString});
-})
+});
 
-$(document).foundation()
+$(document).foundation();
