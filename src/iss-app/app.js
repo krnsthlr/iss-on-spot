@@ -42,9 +42,10 @@ app.post('/', (req, res, next) => {
 	let item = new TweetItem({location: req.body.location});
 	item.save((err) => {
 		if(err) console.error(err);
+		next();
 	});
 
-	next();
+	
 });
 
 // aggregate response and send back json data
