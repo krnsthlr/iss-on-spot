@@ -45,18 +45,22 @@ stream.on('error', function(err){
 function reply(tweet) {
 	// Get user's screen name
 	const name = tweet.user.screen_name;
+	// Get tweet location OR try and get user location
 	let location;
+	if(tweet.place !== null) location = tweet.place.full_name;
+	else if(tweet.user.location !== null) location = tweet.user.location;
+	else location = undefined;
+
+	console.log(location);
+
 	// If tweet location is not definded, respond with error message
-	if(tweet.place === null) {
-		location = undefined;
+	if(location === undefined) {
 		tweetBack('Hi, @' + name + 
 			', sorry, something went wrong. Please make sure you added a location to your tweet.',
 			 tweet.id);
 	}
 
 	else {
-		// Get tweet location
-		location = tweet.place.full_name;
 		// Get the next ISS Fly Over for the specified location
 		find.flyOver(location)
 			.then((result) => {
