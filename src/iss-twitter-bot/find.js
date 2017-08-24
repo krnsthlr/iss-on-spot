@@ -18,7 +18,7 @@ const googleTimezone = process.env.GOOGLE_TIMEZONE;
 */
 
 function getCoordinates(location){
-
+	
 	return new Promise((resolve, reject) => {
 
 		const request = https.get('https://maps.googleapis.com/maps/api/geocode/json?address=' 

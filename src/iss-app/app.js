@@ -41,36 +41,42 @@ app.post('/', (req, res, next) => {
 
 	let item = new TweetItem({location: req.body.location});
 	item.save((err) => {
-		if(err) console.error(err);
-		next();
-	});
 
-	
+		if(err) console.error(err);
+
+		Promise.all([
+				TweetItem.getNumber('day'),
+				TweetItem.getNumber('week'),
+				TweetItem.getNumber('month')
+			]).then((data) => {
+				req.body.hrs = data[0];
+				req.body.week = data[1];
+				req.body.month = data[2];
+
+				next();
+			});
+	});	
 });
 
 // aggregate response and send back json data
 app.post('/', (req, res) => {
 
-	Promise.all([
-			find.flyOver(req.body.location),
-			TweetItem.getNumber('day'),
-			TweetItem.getNumber('week'),
-			TweetItem.getNumber('month')
-		]).then((result) => {
+	find.flyOver(req.body.location)
+		.then((result) => {
 			res.json({
-				requests24hrs: result[1],
-				requestsWeek: result[2],
-				requestsMonth: result[3],
+				requests24hrs: req.body.hrs,
+				requestsWeek: req.body.week,
+				requestsMonth: req.body.month,
 				message: 'The ISS will be over ' + req.body.location 
-				+ ' on ' + result[0].time + ' (local time) ' 
-				+ 'for ' + result[0].duration + ' sec.'
+				+ ' on ' + result.time + ' (local time) ' 
+				+ 'for ' + result.duration + ' sec.'
 			})
 		}).catch((err) => {
 			console.error(err);
 			res.json({
-				requests24hrs: NaN,
-				requestsWeek: NaN,
-				requestsMonth: NaN,
+				requests24hrs: req.body.hrs,
+				requestsWeek: req.body.week,
+				requestsMonth: req.body.month,
 				message: 'Sorry, something went wrong. Please try again.'
 			})
 		});

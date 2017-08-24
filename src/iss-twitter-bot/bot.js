@@ -51,8 +51,6 @@ function reply(tweet) {
 	else if(tweet.user.location !== null) location = tweet.user.location;
 	else location = undefined;
 
-	console.log(location);
-
 	// If tweet location is not definded, respond with error message
 	if(location === undefined) {
 		tweetBack('Hi, @' + name + 
