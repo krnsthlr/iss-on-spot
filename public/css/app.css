@@ -65,3 +65,8 @@
 #message {
   display: none;
 }
+
+#iss_icon {
+  width: 15%;
+  padding-top: 40px;
+}

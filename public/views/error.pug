@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	.grid-x.grid-margin-x.grid-padding-x.row
+			.cell.centered
+				img(id='iss_icon' src='./images/noun_24414.svg', alt='Space Station Icon' title='Space Station Icon by Jon Daiello')
+	
+	.grid-x.grid-margin-x.grid-padding-x.row
+			.cell.centered
+				h2 Sorry, something went wrong!
+				hr.dotted
+				h3
+					| #{err.status} #{err.message}

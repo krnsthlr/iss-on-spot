@@ -11,7 +11,7 @@ mongoose.Promise = global.Promise;
 //set up database connection
 const db = mongoose.connect(process.env.MONGODB_URI || 
 	'mongodb://localhost:27017/user-tweets', {
-	useMongoClient: true
+	useMongoClient: true,
 });
 
 db

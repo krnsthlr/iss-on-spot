@@ -52,7 +52,12 @@ app.post('/', (req, res, next) => {
 				req.body.hrs = data[0];
 				req.body.week = data[1];
 				req.body.month = data[2];
+				next();
 
+			}).catch((err) => {
+				// if an error occurs, the app does not break (only the
+				// request statistic on the page will not be updated)
+				console.error(err);
 				next();
 			});
 	});	
@@ -92,9 +97,7 @@ app.use((req, res, next) => {
 //global error handler
 app.use((err, req, res, next) => {
 	res.status(err.status || 500);
-	res.json({
-		error: err
-	});
+	res.render('error', {err: err});
 });
 
 // start listening on specified port
