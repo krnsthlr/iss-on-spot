@@ -1,47 +1,72 @@
-const searchInput = $('input')[0];
-const autocomplete = new google.maps.places.Autocomplete(
-	(searchInput), {types:['(regions)']});
+const ISSApp = (function($){
 
-const showMessage = function(message){
-	$('#message p').text(message);
-	$('#message').show('slow');
-}
+	'use strict';
 
+	const $locationSearch = $('#locationSearch');
+	const $formInput = $locationSearch.find('input[type=search]');
+	const $formButton = $locationSearch.find('input[type=submit]');
+	const $message = $('#message');
 
-// Ajax success handler
-const render = function(data){
-	$('#hrs').text(data.requests24hrs);
-	$('#week').text(data.requestsWeek);
-	$('#month').text(data.requestsMonth);
-	showMessage(data.message);
-	$('.button').removeClass('disabled');
-}
+	const $hrs = $('#hrs');
+	const $week = $('#week');
+	const $month = $('#month');
 
-// On search form submit event, POST location and
-// get next ISS pass time via ajax
-const requestPassTime = function(location){
+	// Initialize Google Autocomplete for text input
+	const autocomplete = new google.maps.places.Autocomplete(
+		$formInput[0], {types:['(regions)']});
 
-	$.ajax({
-		type: 'POST',
-		url: '/',
-		data: location,
-		success: render,
-		dataType: 'json'
-	});
-};
+	const showNumbers = function(data){
+		$hrs.text(data.requests24hrs);
+		$week.text(data.requestsWeek);
+		$month.text(data.requestsMonth);
+	}
 
-// Search form event handler
-$('form').submit((event) => {
-	event.preventDefault();
+	const showMessage = function(data){
+		$message.children('p').text(data.message);
+		$message.show('slow');
+		$formButton.prop('disabled', false).removeClass('disabled');
+	}
 
-	if($('#message').length){
-		$('#message').hide();
+	const requestStats = function(){
+		$.get('/stat', showNumbers);
+	}
+
+	// On search form submit event, POST location and
+	// get next ISS pass time
+	const requestPassTime = function(location){
+
+		$.ajax({
+			type: 'POST',
+			url: '/',
+			data: location,
+			dataType: 'json'
+		})
+		.done(showMessage)
+		.done(requestStats)
 	};
 
-	$('.button').addClass('disabled');
+	// Search form event handler
+	$locationSearch.submit((event) => {
+		event.preventDefault();
 
-	let searchString = $('#searchInput').val();
-	requestPassTime({location: searchString});
-});
+		if($message.length){
+			$message.hide();
+		};
+
+		$formButton.prop('disabled', true).addClass('disabled');
+
+		let searchString = $formInput.val();
+		requestPassTime({location: searchString});
+	});
+
+	return {
+		init: requestStats,
+	}
+
+}(jQuery));
 
 $(document).foundation();
+
+$(function(){
+	ISSApp.init();
+});
