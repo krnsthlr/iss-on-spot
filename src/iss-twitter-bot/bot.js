@@ -25,10 +25,6 @@ stream.on('tweet', reply);
 
 // Log messages in case of connection problems
 // with the Twitter Streaming API
-stream.on('disconnect', function (disconn) {
-  console.log('disconnect')
-});
-
 stream.on('connect', function (conn) {
   console.log('connecting')
 });
@@ -55,7 +51,7 @@ function reply(tweet) {
 	if(location === undefined) {
 		tweetBack('Hi, @' + name + 
 			', sorry, something went wrong. Please make sure you added a location to your tweet.',
-			 tweet.id);
+			 tweet.id_str);
 	}
 
 	else {
@@ -63,13 +59,13 @@ function reply(tweet) {
 		find.flyOver(location)
 			.then((result) => {
 				tweetBack('Hi, @' + name + ', the ISS will be over ' + location
-				+ ' on ' + result.time + ' (local time) for ' + result.duration + ' sec.', tweet.id);
+				+ ' on ' + result.time + ' (local time) for ' + result.duration + ' sec.', tweet.id_str);
 			})
 			.catch((err) => {
 				console.error(err);
 				tweetBack('Hi, @' + name + 
 				', sorry, something went wrong. Please try again.',
-				 tweet.id);
+				 tweet.id_str);
 		});
 	}	
 	//store time and location of tweet in db

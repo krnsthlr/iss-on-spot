@@ -2,14 +2,14 @@ const searchInput = $('input')[0];
 const autocomplete = new google.maps.places.Autocomplete(
 	(searchInput), {types:['(regions)']});
 
-const showMessage = (message) => {
+const showMessage = function(message){
 	$('#message p').text(message);
 	$('#message').show('slow');
 }
 
 
 // Ajax success handler
-const render = (data) => {
+const render = function(data){
 	$('#hrs').text(data.requests24hrs);
 	$('#week').text(data.requestsWeek);
 	$('#month').text(data.requestsMonth);
@@ -19,7 +19,7 @@ const render = (data) => {
 
 // On search form submit event, POST location and
 // get next ISS pass time via ajax
-const requestPassTime = (location) => {
+const requestPassTime = function(location){
 
 	$.ajax({
 		type: 'POST',
