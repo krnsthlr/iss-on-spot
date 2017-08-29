@@ -26,11 +26,11 @@ stream.on('tweet', reply);
 // Log messages in case of connection problems
 // with the Twitter Streaming API
 stream.on('connect', function (conn) {
-  console.log('connecting')
+  console.log('connecting');
 });
 
 stream.on('reconnect', function (reconn, res, interval) {
-  console.log('reconnecting. statusCode:', res.statusCode)
+  console.log('reconnecting. statusCode:', res.statusCode);
 });
 
 stream.on('error', function(err){
@@ -74,7 +74,7 @@ function reply(tweet) {
 	item.save((err) => {
 		if(err) console.error(err);
 	});
-};
+}
 
 // POST reply to the user
 function tweetBack(statusText, replyID){
@@ -82,10 +82,10 @@ function tweetBack(statusText, replyID){
 	let tweet = {
 		'status': statusText,
 		'in_reply_to_status_id': replyID
-	}
+	};
 
 	Twitter.post('statuses/update', tweet, function(err, data, response){
 		if(err) console.error(err);
 		else console.log('success!');
 	});
-};
+}

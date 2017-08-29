@@ -1,7 +1,6 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const TweetItem = require('./models.js').TweetItem;
 
 // mpromise (mongoose's default promise library) is 
 // deprecated (http://mongoosejs.com/docs/promises.html), 

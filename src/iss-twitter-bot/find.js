@@ -43,7 +43,7 @@ function getCoordinates(location){
 
 		//handle connection errors on the request
 		request.on('error', (err) => reject(err));
-	})
+	});
 }
 
 /**
@@ -78,8 +78,8 @@ function getPassTimes(coordinates){
 		});
 		//handle connection errors on the request
 		request.on('error', (err) => reject(err));
-	})
-};
+	});
+}
 
 /**
 * ------------------------------------------------------------------------
@@ -132,7 +132,7 @@ function getLocalTime(data){
 		//handle connection errors on the request
 		request.on('error', (err) => reject(err));
 	});
-};
+}
 
 const getFlyOver = (location) => {
 	return getCoordinates(location)

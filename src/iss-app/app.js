@@ -14,9 +14,9 @@ app.set('port', process.env.PORT || 5000);
 app.use(express.static('public/'));
 // set up view engine
 app.set('view engine', 'pug');
-app.set('views', './public/views')
+app.set('views', './public/views');
 
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan('dev'));
 
 // On initial page request, load index file
@@ -37,14 +37,14 @@ app.get('/stat', (req, res, next) => {
 				requests24hrs: data[0],
 				requestsWeek: data[1],
 				requestsMonth: data[2]
-			})
+			});
 		})
 		.catch((err) => {
 			res.json({
 				requests24hrs: NaN,
 				requestsWeek: NaN,
 				requestsMonth: NaN
-			})
+			});
 		});
 });
 
@@ -68,12 +68,12 @@ app.post('/', (req, res) => {
 				+ ' on ' + result.time + ' (local time) ' 
 				+ 'for ' + result.minutes + ' minutes and '
 				+ result.seconds + ' seconds.'
-			})
+			});
 		}).catch((err) => {
 			console.error(err);
 			res.json({
 				message: 'Sorry, something went wrong. Please try again.'
-			})
+			});
 		});
 });
 
