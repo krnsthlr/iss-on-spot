@@ -66,7 +66,8 @@ app.post('/', (req, res) => {
 			res.json({
 				message: 'The ISS will be over ' + req.body.location 
 				+ ' on ' + result.time + ' (local time) ' 
-				+ 'for ' + result.duration + ' sec.'
+				+ 'for ' + result.minutes + ' minutes and '
+				+ result.seconds + ' seconds.'
 			})
 		}).catch((err) => {
 			console.error(err);

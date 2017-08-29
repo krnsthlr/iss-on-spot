@@ -92,6 +92,8 @@ function getLocalTime(data){
 
 	let timestamp = data.response[0].risetime;
 	let duration = data.response[0].duration;
+	let minutes = Math.floor(duration/60);
+	let seconds = duration - minutes * 60;
 
 	return new Promise((resolve, reject) => {
 
@@ -118,7 +120,8 @@ function getLocalTime(data){
 									.format("dddd, MMMM Do YYYY, h:mm:ss a");
 						resolve({
 							'time': time,
-							'duration': duration
+							'minutes': minutes,
+							'seconds': seconds
 						});
 					} catch(e) {
 						reject(e);
