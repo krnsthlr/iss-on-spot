@@ -12,7 +12,7 @@ block content
 	// MAIN CONTENT
 	section.main
 		.grid-x.grid-margin-x.grid-padding-x.row
-			.small-12.medium-6.cell
+			#intro.small-12.medium-6.cell
 				hr.dotted
 				p
 					| This website was built for the Full Stack JavaScript Program on Treehouse. It features "ISSOnSpot", a Twitter account that sends information about the next time the International Space Station (ISS) passes a specific location. Here is how it works:
@@ -30,8 +30,8 @@ block content
 						| Your local time is computed using the Google Timezone API. ISSOnSpot then notifies you about the next ISS fly-over time.
 				.centered
 					a.twitter-mention-button(href='https://twitter.com/intent/tweet?screen_name=ISSOnSpot', data-size='large', data-text='Hi, when will the ISS be passing by?', data-lang='en', data-show-count='false') Tweet to @ISSOnSpot
-			.small-12.medium-6.cell
-				a.twitter-timeline(href='https://twitter.com/ISSOnSpot', height='100%') Tweets by ISSOnSpot
+			#twitter-feed.small-12.medium-6.cell
+				a.twitter-timeline(href='https://twitter.com/ISSOnSpot' height='100%') Tweets by ISSOnSpot
 		.grid-x.grid-margin-x.grid-padding-x.row.row-background
 			.small-12.medium-6.cell
 				h2 Not on Twitter?

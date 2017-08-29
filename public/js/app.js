@@ -15,6 +15,9 @@ var ISSApp = (function($){
 	var autocomplete = new google.maps.places.Autocomplete(
 		$formInput[0], {types:['(regions)']});
 
+	// Set height of twitter timeline to sibling height
+	$('#twitter-feed').height($('#intro').height()) 
+
 	var showNumbers = function(data){
 		$hrs.text(data.requests24hrs);
 		$week.text(data.requestsWeek);
